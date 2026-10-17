@@ -1,0 +1,67 @@
+{
+  "overall_accuracy": 0.7666666666666667,
+  "bins": [
+    {
+      "occupancy": "0.0-0.1",
+      "windows": 403,
+      "accuracy": 0.5558312655086849
+    },
+    {
+      "occupancy": "0.1-0.3",
+      "windows": 22,
+      "accuracy": 0.7272727272727273
+    },
+    {
+      "occupancy": "0.3-0.6",
+      "windows": 52,
+      "accuracy": 0.6923076923076923
+    },
+    {
+      "occupancy": "0.6-1.0",
+      "windows": 663,
+      "accuracy": 0.9019607843137255
+    }
+  ],
+  "per_drone": {
+    "DJI_inspire_2": {
+      "mean_occupancy": 0.852,
+      "accuracy": 0.728
+    },
+    "DJI_matrice_100": {
+      "mean_occupancy": 0.864,
+      "accuracy": 0.95
+    },
+    "DJI_matrice_210": {
+      "mean_occupancy": 0.851,
+      "accuracy": 0.794
+    },
+    "DJI_mavic_mini": {
+      "mean_occupancy": 0.434,
+      "accuracy": 0.583
+    },
+    "DJI_mavic_pro": {
+      "mean_occupancy": 0.839,
+      "accuracy": 0.917
+    },
+    "DJI_phantom_4": {
+      "mean_occupancy": 0.861,
+      "accuracy": 0.983
+    },
+    "DJI_phantom_4_pro_plus": {
+      "mean_occupancy": 0.858,
+      "accuracy": 0.789
+    },
+    "Parrot_disco": {
+      "mean_occupancy": 0.108,
+      "accuracy": 0.617
+    },
+    "Parrot_mambo": {
+      "mean_occupancy": 0.058,
+      "accuracy": 0.858
+    },
+    "Yuneec_typhoon_h": {
+      "mean_occupancy": 0.102,
+      "accuracy": 0.622
+    }
+  }
+}

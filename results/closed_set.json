@@ -1,0 +1,114 @@
+{
+  "classes": [
+    "DJI_inspire_2",
+    "DJI_matrice_100",
+    "DJI_matrice_210",
+    "DJI_mavic_mini",
+    "DJI_mavic_pro",
+    "DJI_phantom_4",
+    "DJI_phantom_4_pro_plus",
+    "Parrot_disco",
+    "Parrot_mambo",
+    "Yuneec_typhoon_h"
+  ],
+  "two_file_drones": [
+    "DJI_inspire_2",
+    "DJI_matrice_210",
+    "DJI_phantom_4_pro_plus",
+    "Yuneec_typhoon_h"
+  ],
+  "steps": 600,
+  "device": "cuda",
+  "runs": [
+    {
+      "seed": 0,
+      "time_block": {
+        "val": 0.7894737124443054,
+        "test": 0.7728070020675659,
+        "per_class_test": {
+          "DJI_inspire_2": 0.733,
+          "DJI_matrice_100": 0.95,
+          "DJI_matrice_210": 0.8,
+          "DJI_mavic_mini": 0.583,
+          "DJI_mavic_pro": 0.883,
+          "DJI_phantom_4": 0.983,
+          "DJI_phantom_4_pro_plus": 0.8,
+          "Parrot_disco": 0.633,
+          "Parrot_mambo": 0.892,
+          "Yuneec_typhoon_h": 0.622
+        }
+      },
+      "cross_recording": {
+        "held_out_recording_acc": 0.6708333492279053,
+        "same_drones_time_block_acc": 0.6000000238418579,
+        "per_recording": {
+          "DJI_inspire_2_5G_2of2.bin": 0.667,
+          "DJI_matrice_210_5G_2of2.bin": 0.8,
+          "DJI_phantom_4_pro_plus_5G_2of2.bin": 0.867,
+          "Yuneec_typhoon_h_2G_2of2.bin": 0.35
+        }
+      },
+      "seconds": 39
+    },
+    {
+      "seed": 1,
+      "time_block": {
+        "val": 0.7850877046585083,
+        "test": 0.7701754570007324,
+        "per_class_test": {
+          "DJI_inspire_2": 0.722,
+          "DJI_matrice_100": 0.967,
+          "DJI_matrice_210": 0.844,
+          "DJI_mavic_mini": 0.633,
+          "DJI_mavic_pro": 0.883,
+          "DJI_phantom_4": 0.983,
+          "DJI_phantom_4_pro_plus": 0.783,
+          "Parrot_disco": 0.667,
+          "Parrot_mambo": 0.875,
+          "Yuneec_typhoon_h": 0.567
+        }
+      },
+      "cross_recording": {
+        "held_out_recording_acc": 0.6708333492279053,
+        "same_drones_time_block_acc": 0.6083333492279053,
+        "per_recording": {
+          "DJI_inspire_2_5G_2of2.bin": 0.667,
+          "DJI_matrice_210_5G_2of2.bin": 0.783,
+          "DJI_phantom_4_pro_plus_5G_2of2.bin": 0.867,
+          "Yuneec_typhoon_h_2G_2of2.bin": 0.367
+        }
+      },
+      "seconds": 35
+    },
+    {
+      "seed": 2,
+      "time_block": {
+        "val": 0.7824561595916748,
+        "test": 0.7728070020675659,
+        "per_class_test": {
+          "DJI_inspire_2": 0.75,
+          "DJI_matrice_100": 0.917,
+          "DJI_matrice_210": 0.794,
+          "DJI_mavic_mini": 0.617,
+          "DJI_mavic_pro": 0.933,
+          "DJI_phantom_4": 0.983,
+          "DJI_phantom_4_pro_plus": 0.822,
+          "Parrot_disco": 0.583,
+          "Parrot_mambo": 0.9,
+          "Yuneec_typhoon_h": 0.583
+        }
+      },
+      "cross_recording": {
+        "held_out_recording_acc": 0.699999988079071,
+        "same_drones_time_block_acc": 0.625,
+        "per_recording": {
+          "DJI_inspire_2_5G_2of2.bin": 0.7,
+          "DJI_matrice_210_5G_2of2.bin": 0.833,
+          "DJI_phantom_4_pro_plus_5G_2of2.bin": 0.817,
+          "Yuneec_typhoon_h_2G_2of2.bin": 0.45
+        }
+      },
+      "seconds": 34
+    }
+  ]
+}

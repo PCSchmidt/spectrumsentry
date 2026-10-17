@@ -85,6 +85,20 @@ def sample_train(spans: list[Span], n: int, rng: np.random.Generator) -> list[tu
     return out
 
 
+def sample_from_candidates(spans: list[Span], candidates: dict[Span, np.ndarray], n: int, rng: np.random.Generator) -> list[tuple[Span, int]]:
+    """Like ``sample_train`` but starts come from ``candidates[span]`` (e.g. windows that passed a gate)."""
+    by_class: dict[int, list[Span]] = {}
+    for s in spans:
+        if len(candidates.get(s, ())):
+            by_class.setdefault(s.label, []).append(s)
+    classes = sorted(by_class)
+    out = []
+    for c in rng.choice(classes, size=n):
+        s = by_class[int(c)][rng.integers(len(by_class[int(c)]))]
+        out.append((s, int(rng.choice(candidates[s]))))
+    return out
+
+
 def eval_windows(spans: list[Span], per_span: int) -> list[tuple[Span, int]]:
     """Up to ``per_span`` evenly spaced, non-overlapping aligned windows from each span."""
     out = []

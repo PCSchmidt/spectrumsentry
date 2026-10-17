@@ -8,7 +8,7 @@ import numpy as np
 import torch
 from torch import nn
 
-from .data import Span, Store, eval_windows, load_batch, sample_train
+from .data import Span, Store, eval_windows, load_batch, sample_from_candidates, sample_train
 from .model import SpecCnn
 from .spec import spectrogram
 
@@ -25,8 +25,13 @@ def train(
     seed: int = 0,
     transform: Transform | None = None,
     lr: float = 2e-3,
+    candidates: dict[Span, np.ndarray] | None = None,
 ) -> SpecCnn:
-    """Train from scratch. ``transform`` (e.g. random impairments) is applied to each training batch."""
+    """Train from scratch. ``transform`` (e.g. random impairments) is applied to each training batch.
+
+    With ``candidates`` (span -> start offsets that passed the energy detector), training windows are
+    drawn only from those, still balanced across classes.
+    """
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
     model = SpecCnn(n_classes).to(device)
@@ -35,7 +40,8 @@ def train(
     loss_fn = nn.CrossEntropyLoss()
     model.train()
     for _ in range(steps):
-        x, y = load_batch(store, sample_train(spans, batch, rng), device)
+        items = sample_train(spans, batch, rng) if candidates is None else sample_from_candidates(spans, candidates, batch, rng)
+        x, y = load_batch(store, items, device)
         if transform is not None:
             x = transform(x)
         loss = loss_fn(model(spectrogram(x)), y)

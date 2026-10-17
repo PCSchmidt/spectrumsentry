@@ -1,0 +1,141 @@
+{
+  "classes": [
+    "DJI_inspire_2",
+    "DJI_matrice_100",
+    "DJI_matrice_210",
+    "DJI_mavic_mini",
+    "DJI_mavic_pro",
+    "DJI_phantom_4",
+    "DJI_phantom_4_pro_plus",
+    "Parrot_disco",
+    "Parrot_mambo",
+    "Yuneec_typhoon_h"
+  ],
+  "detection_rate": {
+    "DJI_inspire_2": 0.8770491803278688,
+    "DJI_matrice_100": 0.8879781420765027,
+    "DJI_matrice_210": 0.8739754098360656,
+    "DJI_mavic_mini": 0.5409836065573771,
+    "DJI_mavic_pro": 0.9480874316939891,
+    "DJI_phantom_4": 0.8825136612021858,
+    "DJI_phantom_4_pro_plus": 0.8770491803278688,
+    "Parrot_disco": 0.1284153005464481,
+    "Parrot_mambo": 0.09836065573770492,
+    "Yuneec_typhoon_h": 0.14368370298939248
+  },
+  "n_test_windows": 6527,
+  "n_detected": 4026,
+  "runs": [
+    {
+      "seed": 0,
+      "ungated": {
+        "accuracy_all_windows": 0.7715642714876666,
+        "accuracy_detected_windows": 0.8964232488822653,
+        "end_to_end": 0.5529339666002758,
+        "per_drone_detected": {
+          "DJI_inspire_2": 0.819,
+          "DJI_matrice_100": 0.982,
+          "DJI_matrice_210": 0.89,
+          "DJI_mavic_mini": 1.0,
+          "DJI_mavic_pro": 0.951,
+          "DJI_phantom_4": 1.0,
+          "DJI_phantom_4_pro_plus": 0.852,
+          "Parrot_disco": 1.0,
+          "Parrot_mambo": 0.75,
+          "Yuneec_typhoon_h": 1.0
+        }
+      },
+      "gated": {
+        "accuracy_all_windows": 0.6037996016546653,
+        "accuracy_detected_windows": 0.9247391952309985,
+        "end_to_end": 0.5703998774322047,
+        "per_drone_detected": {
+          "DJI_inspire_2": 0.838,
+          "DJI_matrice_100": 0.982,
+          "DJI_matrice_210": 0.933,
+          "DJI_mavic_mini": 1.0,
+          "DJI_mavic_pro": 0.988,
+          "DJI_phantom_4": 1.0,
+          "DJI_phantom_4_pro_plus": 0.887,
+          "Parrot_disco": 1.0,
+          "Parrot_mambo": 1.0,
+          "Yuneec_typhoon_h": 1.0
+        }
+      }
+    },
+    {
+      "seed": 1,
+      "ungated": {
+        "accuracy_all_windows": 0.7688064960931515,
+        "accuracy_detected_windows": 0.895926477893691,
+        "end_to_end": 0.5526275471119964,
+        "per_drone_detected": {
+          "DJI_inspire_2": 0.835,
+          "DJI_matrice_100": 0.991,
+          "DJI_matrice_210": 0.9,
+          "DJI_mavic_mini": 1.0,
+          "DJI_mavic_pro": 0.937,
+          "DJI_phantom_4": 1.0,
+          "DJI_phantom_4_pro_plus": 0.826,
+          "Parrot_disco": 1.0,
+          "Parrot_mambo": 0.75,
+          "Yuneec_typhoon_h": 0.993
+        }
+      },
+      "gated": {
+        "accuracy_all_windows": 0.6064041673050407,
+        "accuracy_detected_windows": 0.9299552906110283,
+        "end_to_end": 0.573617282059139,
+        "per_drone_detected": {
+          "DJI_inspire_2": 0.863,
+          "DJI_matrice_100": 0.972,
+          "DJI_matrice_210": 0.944,
+          "DJI_mavic_mini": 1.0,
+          "DJI_mavic_pro": 0.983,
+          "DJI_phantom_4": 1.0,
+          "DJI_phantom_4_pro_plus": 0.881,
+          "Parrot_disco": 1.0,
+          "Parrot_mambo": 1.0,
+          "Yuneec_typhoon_h": 1.0
+        }
+      }
+    },
+    {
+      "seed": 2,
+      "ungated": {
+        "accuracy_all_windows": 0.7715642714876666,
+        "accuracy_detected_windows": 0.8954297069051167,
+        "end_to_end": 0.5523211276237169,
+        "per_drone_detected": {
+          "DJI_inspire_2": 0.824,
+          "DJI_matrice_100": 0.991,
+          "DJI_matrice_210": 0.873,
+          "DJI_mavic_mini": 1.0,
+          "DJI_mavic_pro": 0.954,
+          "DJI_phantom_4": 1.0,
+          "DJI_phantom_4_pro_plus": 0.856,
+          "Parrot_disco": 1.0,
+          "Parrot_mambo": 0.75,
+          "Yuneec_typhoon_h": 0.987
+        }
+      },
+      "gated": {
+        "accuracy_all_windows": 0.6048720698636433,
+        "accuracy_detected_windows": 0.9279682066567313,
+        "end_to_end": 0.5723916041060212,
+        "per_drone_detected": {
+          "DJI_inspire_2": 0.898,
+          "DJI_matrice_100": 0.963,
+          "DJI_matrice_210": 0.947,
+          "DJI_mavic_mini": 1.0,
+          "DJI_mavic_pro": 0.98,
+          "DJI_phantom_4": 1.0,
+          "DJI_phantom_4_pro_plus": 0.838,
+          "Parrot_disco": 1.0,
+          "Parrot_mambo": 1.0,
+          "Yuneec_typhoon_h": 1.0
+        }
+      }
+    }
+  ]
+}

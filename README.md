@@ -2,7 +2,7 @@
 
 Receive-only classification of drone radio links from raw IQ samples, with an honest look at how it breaks when conditions change.
 
-**Status: just started. Library code and unit tests exist; no results yet.** Nothing here transmits; it analyses recordings. See [design](docs/design.md) for scope and for what the data cannot show.
+**Status: early. A closed-set baseline on CardRF is measured (77% on held-out time blocks, 68% on a held-out recording, 93% on windows that contain a burst; see [results](docs/results.md)). The simulated-shift experiments, open-set detection and the second dataset are not done.** Nothing here transmits; it analyses recordings. See [design](docs/design.md) for scope and for what the data cannot show.
 
 ## What it will do
 
