@@ -27,10 +27,11 @@ def awgn(x: torch.Tensor, snr_db: float, gen: torch.Generator | None = None) -> 
     return x + sigma * noise
 
 
-def cfo(x: torch.Tensor, offset_hz: torch.Tensor | float, fs: float) -> torch.Tensor:
-    """Carrier frequency offset: multiply by exp(j 2 pi f n / fs); ``offset_hz`` may be per-window (B,)."""
+def cfo(x: torch.Tensor, offset_hz: torch.Tensor | float, fs: torch.Tensor | float) -> torch.Tensor:
+    """Carrier frequency offset: multiply by exp(j 2 pi f n / fs); ``offset_hz`` and ``fs`` may be per-window (B,)."""
     n = torch.arange(x.shape[-1], device=x.device, dtype=torch.float32)
     f = torch.as_tensor(offset_hz, dtype=torch.float32, device=x.device).reshape(-1, 1)
+    fs = torch.as_tensor(fs, dtype=torch.float32, device=x.device).reshape(-1, 1)
     phase = 2 * math.pi * f * n / fs
     return x * torch.polar(torch.ones_like(phase), phase)
 
@@ -51,18 +52,24 @@ def multipath(x: torch.Tensor, taps: torch.Tensor) -> torch.Tensor:
     return torch.fft.ifft(torch.fft.fft(x, dim=-1) * torch.fft.fft(h, dim=-1), dim=-1)
 
 
-def random_multipath(batch: int, n_taps: int = 4, decay: float = 0.5, device="cpu", gen: torch.Generator | None = None) -> torch.Tensor:
-    """Rayleigh taps with exponentially decaying power; the first tap is the direct path."""
+def random_multipath(batch: int, n_taps: int = 4, decay: float = 0.5, spacing: int = 1, device="cpu", gen: torch.Generator | None = None) -> torch.Tensor:
+    """Rayleigh taps with exponentially decaying power, ``spacing`` samples apart; the first tap is the direct path.
+
+    At 120 MS/s one sample is 8.3 ns, so spacing 6 is a 50 ns step between paths.
+    """
     power = decay ** torch.arange(n_taps, dtype=torch.float32, device=device)
     re = torch.randn(batch, n_taps, generator=gen, device=device) * power.sqrt()
     im = torch.randn(batch, n_taps, generator=gen, device=device) * power.sqrt()
-    return torch.complex(re, im)
+    taps = torch.zeros(batch, (n_taps - 1) * spacing + 1, dtype=torch.complex64, device=device)
+    taps[:, ::spacing] = torch.complex(re, im)
+    return taps
 
 
-def bandlimit(x: torch.Tensor, fs: float, bandwidth_hz: float) -> torch.Tensor:
-    """Brick-wall filter: keep only +/- bandwidth/2 around the capture centre (a narrower receiver)."""
+def bandlimit(x: torch.Tensor, fs: torch.Tensor | float, bandwidth_hz: float) -> torch.Tensor:
+    """Brick-wall filter: keep only +/- bandwidth/2 around the capture centre (a narrower receiver). ``fs`` may be per-window."""
     spec = torch.fft.fft(x, dim=-1)
-    freqs = torch.fft.fftfreq(x.shape[-1], d=1 / fs, device=x.device)
+    fs = torch.as_tensor(fs, dtype=torch.float32, device=x.device).reshape(-1, 1)
+    freqs = torch.fft.fftfreq(x.shape[-1], device=x.device).reshape(1, -1) * fs
     return torch.fft.ifft(spec * (freqs.abs() <= bandwidth_hz / 2), dim=-1)
 
 

@@ -12,7 +12,11 @@ from .data import Span, Store, eval_windows, load_batch, sample_from_candidates,
 from .model import SpecCnn
 from .spec import spectrogram
 
-Transform = Callable[[torch.Tensor], torch.Tensor]  # complex IQ batch -> complex IQ batch
+Transform = Callable[[torch.Tensor, torch.Tensor], torch.Tensor]  # (complex IQ batch, per-window sample rate) -> complex IQ batch
+
+
+def batch_fs(items, device: str) -> torch.Tensor:
+    return torch.tensor([s.rec.fs for s, _ in items], dtype=torch.float32, device=device)
 
 
 def train(
@@ -43,7 +47,7 @@ def train(
         items = sample_train(spans, batch, rng) if candidates is None else sample_from_candidates(spans, candidates, batch, rng)
         x, y = load_batch(store, items, device)
         if transform is not None:
-            x = transform(x)
+            x = transform(x, batch_fs(items, device))
         loss = loss_fn(model(spectrogram(x)), y)
         opt.zero_grad()
         loss.backward()
@@ -60,7 +64,7 @@ def predict(model: SpecCnn, items, store: Store, device: str, transform: Transfo
     for i in range(0, len(items), chunk):
         x, y = load_batch(store, items[i : i + chunk], device)
         if transform is not None:
-            x = transform(x)
+            x = transform(x, batch_fs(items[i : i + chunk], device))
         logits.append(model(spectrogram(x)).cpu())
         labels.append(y.cpu())
     return torch.cat(logits), torch.cat(labels)

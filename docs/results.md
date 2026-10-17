@@ -42,6 +42,38 @@ What this says:
 - **Gated training helps a little and consistently** (about 3 points on detected windows, same sign in all three seeds), but it is one dataset and one run per seed.
 - **The noise floor used by the gate comes from the whole recording.** A live receiver would estimate it from past samples only. Not tested.
 
+## 3. Simulated shift (`scripts/run_shift.py`, figure: `scripts/make_figure.py`)
+
+![Macro accuracy under each simulated impairment](shift.png)
+
+Setup: models trained only on detected windows (1,200 steps, 3 seeds); tested on the 939 detected windows of the held-out time blocks, with one impairment swept at a time. Metric is **macro accuracy** (mean per-drone recall), because the sparse hoppers contribute very few detected windows (13 each for Parrot Disco and Mambo, 35 for Typhoon H), so their share of the average is noisy. Chance is 10%. Every impairment is a *simulation* applied to chamber recordings; none is a field capture. The stated SNR is window mean power over noise power, which counts the recording's own noise floor as signal and averages over the silent gaps of hopping links, so the in-burst SNR is higher than stated.
+
+| Condition | Trained clean | Trained with all impairments | Trained without receiver impairments |
+| --- | --- | --- | --- |
+| No impairment | **97.4%** | 83.1% | 78.0% |
+| SNR 30 dB | 72.9% | 82.8% | 79.2% |
+| SNR 20 dB | 47.6% | 79.0% | 79.9% |
+| SNR 10 dB | 21.1% | 75.7% | 80.2% |
+| SNR 0 dB | 15.2% | 45.6% | 59.2% |
+| CFO up to 1 MHz | 84.5% | 79.7% | 76.8% |
+| CFO up to 5 MHz | 53.4% | 53.1% | 45.5% |
+| I/Q imbalance 2 dB / 15 deg | 71.3% | 79.8% | 78.4% |
+| Multipath, decay 0.5, 24 ns spacing | 60.5% | 81.0% | 79.5% |
+| Receiver bandwidth 56 MHz | 12.3% | 68.1% | 12.6% |
+| Receiver bandwidth 20 MHz | 38.0% | 40.3% | 13.5% |
+| ADC 8 bits | 81.0% | 82.2% | 76.5% |
+| ADC 6 bits | 38.4% | 72.5% | 61.3% |
+
+(Means over 3 seeds; the full tables are in `results/shift.json`.)
+
+What this says:
+
+- **The clean-trained model is very fragile.** It scores 97% on the unimpaired detected windows and drops to 73% with noise at a nominal 30 dB, 48% at 20 dB and 21% at 10 dB. Multipath alone takes it to about 60%, a narrower receiver to chance, and 6-bit sampling to 38%. Carrier frequency offsets up to 1 MHz cost little (84%), and 12-bit sampling nothing. The collapse at 30 dB suggests the model leans on the chamber's very clean noise floor, but I have not tested that explanation.
+- **Training on the impairments recovers most of it, at a price.** With noise from -5 to 30 dB, offsets, imbalance, multipath, narrower receivers and fewer bits in training, accuracy stays around 80% for 10 dB noise, multipath and imbalance. The price is clean accuracy: 83% against 97% (and a wide spread across seeds, 78-89%). Whether a better recipe (more steps, a schedule from easy to hard) closes that gap is untested.
+- **Augmentation generalises only partly to impairments it never saw.** The model trained without bandwidth limiting or re-quantisation (third column) is as good as the full-augmentation model on noise, offset, imbalance and multipath, which it did see, but stays at chance when the receiver is narrowed to 56 MHz (12.6%) and recovers only part of the way for 6-bit sampling (61% against 72.5% with it in training and 38% without any augmentation). So training on noise and channel effects did not protect against the receiver changing.
+- **A narrower receiver is the most damaging case, and it is not a nuisance to be augmented away.** The hopping drones spread their bursts across the full capture, so a 56 MHz or narrower receiver does not see most of them. Even with that in training, 20 MHz gives only 40%. The clean model's accuracy is not monotonic in bandwidth (12% at 56 MHz, 38% at 20 MHz, 23% at 10 MHz); I do not know why and the windows involved are few.
+- **All of this is in-family.** The augmentation and the test impairments come from the same simulator, with overlapping parameter ranges, so the recovery numbers are optimistic about real channels. The unseen-impairment column is the only out-of-family check, and it is weak evidence in the unflattering direction.
+
 ## Not done yet
 
-Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; the simulated-shift sweeps (SNR, frequency offset, I/Q imbalance, multipath, narrow or low-bit receivers) and training with augmentation; open-set detection; the DroneRF dataset (verified and being converted); any real-time or on-device measurement.
+Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; an easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection; the DroneRF dataset (verified and being converted); any real-time or on-device measurement.
