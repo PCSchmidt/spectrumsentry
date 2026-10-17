@@ -1,7 +1,8 @@
 """Splits, window sampling and evaluation over the CardRF recordings.
 
-Windows cut from one recording are near-duplicates of each other (the same hopping
-pattern repeats), so a random split of windows would measure memorisation. Instead each
+Windows cut from one recording might be near-duplicates of each other (the same hopping
+pattern repeats), so a random split of windows could measure memorisation (on this dataset
+it measured the same as the time-block split; see docs/results.md). Each
 recording is divided into contiguous time blocks, with unused gaps between them:
 
     train 0-60% | gap | validation 65-75% | gap | test 80-100%

@@ -12,7 +12,7 @@ All numbers are on CardRF: 10 consumer drones, one anechoic chamber, one receive
 
 Cross-recording, per held-out file: DJI Phantom 4 Pro Plus 5G 85.0%, DJI Matrice 210 5G 80.5%, DJI Inspire 2 5G 67.8%, Yuneec Typhoon H 2G 38.9%. The two parts of a recording are not consecutive stretches of one session, so this is the nearest the dataset gets to a new recording. It still comes from the same chamber and receiver.
 
-The task is not trivial: 77% is far from the near-100% that a random window split would probably give, which is why the split holds out time blocks (not measured here, to avoid claiming a number I did not run).
+The task is not trivial. I also ran the leaky contrast (`scripts/run_leaky.py`): shuffling all windows 80/20 regardless of time gives **76.3%** (77.5, 75.8, 75.7), no higher than the time-block split. So here, unlike the bearing data in the sibling project, window leakage is **not** inflating the score: 0.55 ms windows are not near-duplicates of their neighbours in a way this CNN exploits, and the error is dominated by something else (section 2). The time-block split was a sound precaution but did not change the answer on this dataset.
 
 ## 2. Where the errors are (`scripts/diagnose_windows.py`, `scripts/run_gated.py`)
 

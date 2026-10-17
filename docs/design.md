@@ -11,7 +11,7 @@ This project only analyses recordings of radio signals. It never transmits, and 
 
 ## Splits
 
-Windows from one recording are near-duplicates (a hopping pattern repeats), so a random window split would measure memorisation, as it did on the bearing data in the sibling project. Each recording is cut into contiguous time blocks with gaps (train 0-60%, validation 65-75%, test 80-100%). Drones recorded in two files give a cross-recording test: train on part 1, test on part 2. Only four drones have this.
+Windows from one recording could be near-duplicates (a hopping pattern repeats), so a random window split might measure memorisation, as it did on the bearing data in the sibling project. I checked: on this dataset a random window split scores 76%, the same as the time-block split (77%), so leakage does not matter here (see results.md). The time-block split is kept as a precaution. Each recording is cut into contiguous time blocks with gaps (train 0-60%, validation 65-75%, test 80-100%). Drones recorded in two files give a cross-recording test: train on part 1, test on part 2. Only four drones have this.
 
 ## Examples and model
 
