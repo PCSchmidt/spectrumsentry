@@ -2,7 +2,7 @@
 
 Receive-only classification of drone radio links from raw IQ samples, with an honest look at how it breaks when conditions change.
 
-**Status: early. A closed-set baseline on CardRF is measured (77% on held-out time blocks, 68% on a held-out recording, 93% on windows that contain a burst; see [results](docs/results.md)). Simulated shift is measured too: a clean-trained model falls from 97% to 21% with 10 dB of added noise, and training on impairments recovers most of it but not receiver bandwidth. Open-set detection and the second dataset are not done.** Nothing here transmits; it analyses recordings. See [design](docs/design.md) for scope and for what the data cannot show.
+**Status: early. A closed-set baseline on CardRF is measured (77% on held-out time blocks, 68% on a held-out recording, 93% on windows that contain a burst; see [results](docs/results.md)). Simulated shift is measured too: a clean-trained model falls from 97% to 21% with 10 dB of added noise, and training on impairments recovers most of it but not receiver bandwidth. A second dataset (DroneRF) shows the noise fragility does not repeat there (its model holds to about 5 dB) while flight-mode recognition suffers from drift over the recording session. Open-set detection is not done.** Nothing here transmits; it analyses recordings. See [design](docs/design.md) for scope and for what the data cannot show.
 
 ## What it will do
 
@@ -14,7 +14,7 @@ Receive-only classification of drone radio links from raw IQ samples, with an ho
 
 [CardRF](https://zenodo.org/records/4264467) (Tampere University, CC BY 4.0): 10 consumer drones, raw IQ, recorded in an anechoic chamber. About 8.6 GB. Download with `python scripts/download_cardrf.py` (resumable, checksum-verified). The data is not committed.
 
-A second dataset, [DroneRF](https://data.mendeley.com/datasets/f4c2b4n755/1) (Al-Sa'd, Allahham, Mohamed, Al-Ali, Khattab and Erbad, Qatar University, 2019; Mendeley Data V1, DOI 10.17632/f4c2b4n755.1; CC BY 4.0), is planned as an independent test: a different team, place and receivers, with three drones (AR, Bebop, Phantom) plus background RF. It is downloaded by hand from the Mendeley page and its SHA-256 is checked before use. It is not committed either.
+A second dataset, [DroneRF](https://data.mendeley.com/datasets/f4c2b4n755/1) (Al-Sa'd, Allahham, Mohamed, Al-Ali, Khattab and Erbad, Qatar University, 2019; Mendeley Data V1, DOI 10.17632/f4c2b4n755.1; CC BY 4.0), is used as an independent check: a different team, place and receivers, with three drones (AR, Bebop, Phantom) plus background RF. It is downloaded by hand from the Mendeley page (3.75 GB zip), its SHA-256 is checked, and `scripts/convert_dronerf.py` turns its CSV segments into compact arrays. It is not committed either.
 
 ## Run
 

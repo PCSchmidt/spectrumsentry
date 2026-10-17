@@ -58,7 +58,7 @@ Setup: models trained only on detected windows (1,200 steps, 3 seeds); tested on
 | CFO up to 1 MHz | 84.5% | 79.7% | 76.8% |
 | CFO up to 5 MHz | 53.4% | 53.1% | 45.5% |
 | I/Q imbalance 2 dB / 15 deg | 71.3% | 79.8% | 78.4% |
-| Multipath, decay 0.5, 24 ns spacing | 60.5% | 81.0% | 79.5% |
+| Multipath, decay 0.5, 3-sample (25 ns) spacing | 60.5% | 81.0% | 79.5% |
 | Receiver bandwidth 56 MHz | 12.3% | 68.1% | 12.6% |
 | Receiver bandwidth 20 MHz | 38.0% | 40.3% | 13.5% |
 | ADC 8 bits | 81.0% | 82.2% | 76.5% |
@@ -74,6 +74,42 @@ What this says:
 - **A narrower receiver is the most damaging case, and it is not a nuisance to be augmented away.** The hopping drones spread their bursts across the full capture, so a 56 MHz or narrower receiver does not see most of them. Even with that in training, 20 MHz gives only 40%. The clean model's accuracy is not monotonic in bandwidth (12% at 56 MHz, 38% at 20 MHz, 23% at 10 MHz); I do not know why and the windows involved are few.
 - **All of this is in-family.** The augmentation and the test impairments come from the same simulator, with overlapping parameter ranges, so the recovery numbers are optimistic about real channels. The unseen-impairment column is the only out-of-family check, and it is weak evidence in the unflattering direction.
 
+## 4. DroneRF: a second dataset (`scripts/run_dronerf.py`)
+
+DroneRF (Al-Sa'd, Allahham, Mohamed, Al-Ali, Khattab, Erbad; Qatar University 2019; CC BY 4.0) is a different team, place and pair of receivers: a Parrot Bebop, a Parrot AR Drone, a DJI Phantom and "no drone" background, recorded in a laboratory with two NI USRP-2943R receivers that each cover half of the 2.4 GHz band (files "L" and "H"). The values are real-valued samples (not IQ). The dataset page does not state the sample rate; 40 MS/s is my inference from 10.25 s of background split into 41 segments of 10,000,000 samples. I stack the two halves as two input channels, use 65,536-sample windows (1.6 ms at that inferred rate), and hold out whole 0.25 s segments. The class sets differ from CardRF's, so no model is transferred between datasets; only the method and its failure modes are compared. Three seeds, 1,200 steps.
+
+**Drone identification** (background / AR / Bebop / Phantom; 140 train, 22 validation, 65 test segments):
+
+| Split | Test accuracy | Macro accuracy |
+| --- | --- | --- |
+| Ordered: later segments of each class are the test set | 70.3% (70.3, 72.3, 68.3) | 75.2% |
+| Interleaved: test segments are neighbours of train segments | 74.9% (75.3, 75.2, 74.2) | 77.2% |
+
+Per class, ordered split: background 100% (all seeds), Phantom 77%, Bebop 66%, AR 58%.
+
+**Drone and flight mode** (10 classes: the five-bit code):
+
+| Split | Test accuracy |
+| --- | --- |
+| Ordered | **31.2%** (chance 10%) |
+| Interleaved | **59.8%** |
+
+Under the ordered split several flight-mode classes are recognised at or below chance (Bebop hovering 2%, Bebop flying 1%, AR on-and-connected 1%, AR hovering 2%, Phantom 71%, background 100%). Interleaving the segments nearly doubles the score, so a large part of the failure is **drift over the recording session**: the signal in later segments differs from earlier ones in a way a model trained on early ones does not carry over. I do not know the cause (a changing lab environment, battery state and flight behaviour are all possibilities). The ordered split is the honest one for "will it work later"; the interleaved split is the optimistic one.
+
+**Noise sweep (drone task, ordered split, macro accuracy):**
+
+| SNR (dB) | Trained clean | Trained with random noise |
+| --- | --- | --- |
+| none | 75.3% | 74.9% |
+| 30 | 75.1% | 75.0% |
+| 10 | 74.6% | 75.3% |
+| 5 | 74.1% | 76.3% |
+| 0 | 61.3% | 74.2% |
+| -5 | 33.8% | 45.7% |
+| -10 | 25.4% | 26.5% |
+
+This **contrasts sharply with CardRF**, where the clean-trained model collapsed at a nominal 30 dB (73%) and 10 dB (21%). Here the clean-trained model holds until about 5 dB and only noise training buys protection below 5 dB. One reading is that the anechoic CardRF recordings are so clean that a model trained on them never learns to ignore noise, while DroneRF's laboratory recordings already contain real noise, which would make the CardRF fragility a property of unusually clean training data and not of the method. That is consistent with the two sweeps but not proven: the datasets differ in task (10 against 4 classes), signal type (complex IQ against real samples), receiver, SNR definition (window mean power in both, but over different bandwidths) and window length.
+
 ## Not done yet
 
-Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; an easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection; the DroneRF dataset (verified and being converted); any real-time or on-device measurement.
+Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; an easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection; the other impairments on DroneRF (it is real-valued, so frequency offset and I/Q imbalance do not apply, but bandwidth and bit depth do); a cross-dataset test (the class sets do not overlap); any real-time or on-device measurement.
