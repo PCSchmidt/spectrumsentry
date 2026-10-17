@@ -110,6 +110,28 @@ Under the ordered split several flight-mode classes are recognised at or below c
 
 This **contrasts sharply with CardRF**, where the clean-trained model collapsed at a nominal 30 dB (73%) and 10 dB (21%). Here the clean-trained model holds until about 5 dB and only noise training buys protection below 5 dB. One reading is that the anechoic CardRF recordings are so clean that a model trained on them never learns to ignore noise, while DroneRF's laboratory recordings already contain real noise, which would make the CardRF fragility a property of unusually clean training data and not of the method. That is consistent with the two sweeps but not proven: the datasets differ in task (10 against 4 classes), signal type (complex IQ against real samples), receiver, SNR definition (window mean power in both, but over different bandwidths) and window length.
 
+## 5. Open-set: recognising a drone the model has never seen (`scripts/run_openset.py`)
+
+The 10 drones are shuffled once into 5 pairs; in each fold one pair is held out as "unknown" (never used in training) and the model is a closed-set classifier over the other 8. Test windows are the detected windows of the held-out time blocks, for known and unknown drones alike. Higher score = more likely known. Five folds x three seeds; the spread below is across those, not a confidence interval.
+
+| Score | AUROC, known vs unknown (mean, min-max over 15 runs) | Unknown windows accepted when 95% of known are accepted (mean) |
+| --- | --- | --- |
+| Max softmax probability | 0.695 (0.44-0.95) | 82% |
+| Energy (logsumexp of logits) | 0.735 (0.40-0.98) | 53% |
+| **Mahalanobis distance on the CNN embedding** | **0.935 (0.87-1.00)** | **37%** |
+
+Closed-set accuracy over the 8 known drones in these runs is 95.7% on detected windows; at the 95%-acceptance threshold the accepted known windows are 96.7-98.1% correct depending on the score.
+
+Per fold (mean AUROC; share of unknown accepted at 95% known), Mahalanobis: fold 0 (Mavic Pro + Phantom 4 Pro Plus) 0.89, 71%; fold 1 (Matrice 210 + Parrot Disco) 0.92, 52%; fold 2 (Mavic Mini + Phantom 4) 1.00, 0%; fold 3 (Typhoon H + Inspire 2) 0.87, 59%; fold 4 (Parrot Mambo + Matrice 100) 0.99, 5%.
+
+What this says:
+
+- **Max softmax and energy are not safe for this.** For two held-out DJI models they are *below chance* (AUROC for Phantom 4 Pro Plus 0.27 with MSP, Matrice 210 0.42): the unknown sibling is mapped onto a known DJI model and scored with higher confidence than the known drones themselves. Raw classifier confidence is a poor guide when an unknown looks like a relative of a known class.
+- **Distance in feature space works much better**, AUROC 0.87 to 1.00 in every run, and 0.85-0.92 even for the siblings (Phantom 4 Pro Plus 0.85, Matrice 210 0.92) that fooled the other scores.
+- **A high AUROC is not a safe operating point.** In the three folds containing a DJI sibling of a known drone, or Inspire 2, the Mahalanobis score still accepts 52-71% of unknown windows when 95% of known windows are kept. Rejecting unknown drones reliably would cost a lot of known windows. Folds with unknowns that look unlike anything known (Mavic Mini, Phantom 4, Mambo) are easy: 0-5% accepted.
+- **Unknown drones in the sparse-hopper group are hard to evaluate**: Parrot Disco and Mambo have 13 detected test windows each, so their per-drone numbers (0.96 and 0.98) rest on very little data.
+- **Limits.** Single chamber, single receiver; two unknowns per fold; the Mahalanobis fit uses the training windows of the known drones, the gate's noise floor comes from the whole recording, and no shifted conditions were tested here (the shift sweeps show how much a model changes under noise or a narrower receiver, so open-set scores under those conditions are likely worse; not measured).
+
 ## Not done yet
 
-Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; an easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection; the other impairments on DroneRF (it is real-valued, so frequency offset and I/Q imbalance do not apply, but bandwidth and bit depth do); a cross-dataset test (the class sets do not overlap); any real-time or on-device measurement.
+Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; an easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection under simulated shift or on DroneRF; the other impairments on DroneRF (it is real-valued, so frequency offset and I/Q imbalance do not apply, but bandwidth and bit depth do); a cross-dataset test (the class sets do not overlap); any real-time or on-device measurement.

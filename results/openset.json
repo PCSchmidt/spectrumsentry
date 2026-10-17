@@ -1,0 +1,897 @@
+{
+  "folds": [
+    [
+      "DJI_mavic_pro",
+      "DJI_phantom_4_pro_plus"
+    ],
+    [
+      "DJI_matrice_210",
+      "Parrot_disco"
+    ],
+    [
+      "DJI_mavic_mini",
+      "DJI_phantom_4"
+    ],
+    [
+      "Yuneec_typhoon_h",
+      "DJI_inspire_2"
+    ],
+    [
+      "Parrot_mambo",
+      "DJI_matrice_100"
+    ]
+  ],
+  "steps": 1200,
+  "runs": [
+    {
+      "fold": 0,
+      "seed": 0,
+      "unknown": [
+        "DJI_mavic_pro",
+        "DJI_phantom_4_pro_plus"
+      ],
+      "n_known_windows": 650,
+      "n_unknown_windows": 289,
+      "closed_set_accuracy_known": 0.9753845930099487,
+      "scores": {
+        "msp": {
+          "auroc": 0.46150385946233696,
+          "unknown_accepted_at_95pct_known": 0.629757785467128,
+          "closed_set_accuracy_on_accepted_known": 0.9935170412063599,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9951084812623274
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.2642471746263215
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.4911791322863987,
+          "unknown_accepted_at_95pct_known": 0.6816608996539792,
+          "closed_set_accuracy_on_accepted_known": 0.9821717739105225,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9996449704142012
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.30321545752825374
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.8763162097418152,
+          "unknown_accepted_at_95pct_known": 0.7024221453287197,
+          "closed_set_accuracy_on_accepted_known": 0.9854133129119873,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9874950690335306
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.8352169157856362
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 1,
+      "unknown": [
+        "DJI_mavic_pro",
+        "DJI_phantom_4_pro_plus"
+      ],
+      "n_known_windows": 650,
+      "n_unknown_windows": 289,
+      "closed_set_accuracy_known": 0.9769230484962463,
+      "scores": {
+        "msp": {
+          "auroc": 0.4430609528879425,
+          "unknown_accepted_at_95pct_known": 0.6816608996539792,
+          "closed_set_accuracy_on_accepted_known": 0.9918962717056274,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9956804733727811
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.23877506379876048
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.39639073729039126,
+          "unknown_accepted_at_95pct_known": 0.6782006920415224,
+          "closed_set_accuracy_on_accepted_known": 0.9773095846176147,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9996646942800789
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.1733795114837769
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.896103273888741,
+          "unknown_accepted_at_95pct_known": 0.7162629757785467,
+          "closed_set_accuracy_on_accepted_known": 0.9805510640144348,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9871992110453649
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.8624279985417426
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 0,
+      "seed": 2,
+      "unknown": [
+        "DJI_mavic_pro",
+        "DJI_phantom_4_pro_plus"
+      ],
+      "n_known_windows": 650,
+      "n_unknown_windows": 289,
+      "closed_set_accuracy_known": 0.9815384745597839,
+      "scores": {
+        "msp": {
+          "auroc": 0.4844610061219058,
+          "unknown_accepted_at_95pct_known": 0.6608996539792388,
+          "closed_set_accuracy_on_accepted_known": 0.9967585206031799,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9958777120315582
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.2954064892453518
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.5080330050572265,
+          "unknown_accepted_at_95pct_known": 0.6816608996539792,
+          "closed_set_accuracy_on_accepted_known": 0.9886547923088074,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.9995660749506904
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.32632883703973753
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.8962470055895662,
+          "unknown_accepted_at_95pct_known": 0.7162629757785467,
+          "closed_set_accuracy_on_accepted_known": 0.9821717739105225,
+          "per_unknown": {
+            "DJI_mavic_pro": {
+              "windows": 78,
+              "auroc": 0.991163708086785
+            },
+            "DJI_phantom_4_pro_plus": {
+              "windows": 211,
+              "auroc": 0.8611593146190303
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 0,
+      "unknown": [
+        "DJI_matrice_210",
+        "Parrot_disco"
+      ],
+      "n_known_windows": 720,
+      "n_unknown_windows": 219,
+      "closed_set_accuracy_known": 0.956944465637207,
+      "scores": {
+        "msp": {
+          "auroc": 0.45377663622526637,
+          "unknown_accepted_at_95pct_known": 0.9315068493150684,
+          "closed_set_accuracy_on_accepted_known": 0.9853801131248474,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.4210052588996764
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9730769230769231
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.42496829020801624,
+          "unknown_accepted_at_95pct_known": 0.726027397260274,
+          "closed_set_accuracy_on_accepted_known": 0.9809941649436951,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.3886798813376483
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 1.0
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9104452054794521,
+          "unknown_accepted_at_95pct_known": 0.5662100456621004,
+          "closed_set_accuracy_on_accepted_known": 0.9649122953414917,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.9070186084142395
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9647435897435898
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 1,
+      "unknown": [
+        "DJI_matrice_210",
+        "Parrot_disco"
+      ],
+      "n_known_windows": 720,
+      "n_unknown_windows": 219,
+      "closed_set_accuracy_known": 0.9541666507720947,
+      "scores": {
+        "msp": {
+          "auroc": 0.4475805428716388,
+          "unknown_accepted_at_95pct_known": 0.9223744292237442,
+          "closed_set_accuracy_on_accepted_known": 0.9868420958518982,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.4148024541531823
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9669871794871795
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.43138001014713345,
+          "unknown_accepted_at_95pct_known": 0.7808219178082192,
+          "closed_set_accuracy_on_accepted_known": 0.9795321822166443,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.3955434196332255
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9992521367521368
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9406202435312024,
+          "unknown_accepted_at_95pct_known": 0.410958904109589,
+          "closed_set_accuracy_on_accepted_known": 0.9634503126144409,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.9388619201725997
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.968482905982906
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "seed": 2,
+      "unknown": [
+        "DJI_matrice_210",
+        "Parrot_disco"
+      ],
+      "n_known_windows": 720,
+      "n_unknown_windows": 219,
+      "closed_set_accuracy_known": 0.956944465637207,
+      "scores": {
+        "msp": {
+          "auroc": 0.4483859715880264,
+          "unknown_accepted_at_95pct_known": 0.9360730593607306,
+          "closed_set_accuracy_on_accepted_known": 0.9897660613059998,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.4165419363538296
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9529914529914529
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.43539446981227803,
+          "unknown_accepted_at_95pct_known": 0.8264840182648402,
+          "closed_set_accuracy_on_accepted_known": 0.9809941649436951,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.39981796116504853
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9991452991452991
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9114599188229325,
+          "unknown_accepted_at_95pct_known": 0.5707762557077626,
+          "closed_set_accuracy_on_accepted_known": 0.9649122953414917,
+          "per_unknown": {
+            "DJI_matrice_210": {
+              "windows": 206,
+              "auroc": 0.9099042610571737
+            },
+            "Parrot_disco": {
+              "windows": 13,
+              "auroc": 0.9361111111111111
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "seed": 0,
+      "unknown": [
+        "DJI_mavic_mini",
+        "DJI_phantom_4"
+      ],
+      "n_known_windows": 830,
+      "n_unknown_windows": 109,
+      "closed_set_accuracy_known": 0.942168653011322,
+      "scores": {
+        "msp": {
+          "auroc": 0.7569802144357245,
+          "unknown_accepted_at_95pct_known": 0.9908256880733946,
+          "closed_set_accuracy_on_accepted_known": 0.9644669890403748,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.6960212944802465
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.7966958744067177
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.8507571570686415,
+          "unknown_accepted_at_95pct_known": 0.908256880733945,
+          "closed_set_accuracy_on_accepted_known": 0.9581218361854553,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.7731857663210984
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.9012960934647681
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9938764231236874,
+          "unknown_accepted_at_95pct_known": 0.0,
+          "closed_set_accuracy_on_accepted_known": 0.9568527936935425,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 1.0
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.9898868200073019
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "seed": 1,
+      "unknown": [
+        "DJI_mavic_mini",
+        "DJI_phantom_4"
+      ],
+      "n_known_windows": 830,
+      "n_unknown_windows": 109,
+      "closed_set_accuracy_known": 0.9349397420883179,
+      "scores": {
+        "msp": {
+          "auroc": 0.7545374157179175,
+          "unknown_accepted_at_95pct_known": 1.0,
+          "closed_set_accuracy_on_accepted_known": 0.9670050740242004,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.6557298963295041
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.818912011683096
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.8878302199624185,
+          "unknown_accepted_at_95pct_known": 0.43119266055045874,
+          "closed_set_accuracy_on_accepted_known": 0.9581218361854553,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.772289156626506
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.9631069733479372
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9992152094617001,
+          "unknown_accepted_at_95pct_known": 0.0,
+          "closed_set_accuracy_on_accepted_known": 0.950507640838623,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.9991314093583636
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.9992698064987222
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "seed": 2,
+      "unknown": [
+        "DJI_mavic_mini",
+        "DJI_phantom_4"
+      ],
+      "n_known_windows": 830,
+      "n_unknown_windows": 109,
+      "closed_set_accuracy_known": 0.9373493790626526,
+      "scores": {
+        "msp": {
+          "auroc": 0.6737039902730186,
+          "unknown_accepted_at_95pct_known": 0.9908256880733946,
+          "closed_set_accuracy_on_accepted_known": 0.9619289636611938,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.5179041748388904
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.7752099306316174
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.7727865590803581,
+          "unknown_accepted_at_95pct_known": 0.908256880733945,
+          "closed_set_accuracy_on_accepted_known": 0.9593908786773682,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 0.5659288316054918
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.9075575027382257
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9999226262849563,
+          "unknown_accepted_at_95pct_known": 0.0,
+          "closed_set_accuracy_on_accepted_known": 0.9479695558547974,
+          "per_unknown": {
+            "DJI_mavic_mini": {
+              "windows": 43,
+              "auroc": 1.0
+            },
+            "DJI_phantom_4": {
+              "windows": 66,
+              "auroc": 0.9998722161372764
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "seed": 0,
+      "unknown": [
+        "Yuneec_typhoon_h",
+        "DJI_inspire_2"
+      ],
+      "n_known_windows": 700,
+      "n_unknown_windows": 239,
+      "closed_set_accuracy_known": 0.9728571176528931,
+      "scores": {
+        "msp": {
+          "auroc": 0.9066049013747759,
+          "unknown_accepted_at_95pct_known": 0.8200836820083682,
+          "closed_set_accuracy_on_accepted_known": 0.9909774661064148,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9269795918367347
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.903109243697479
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.9565570830842798,
+          "unknown_accepted_at_95pct_known": 0.3514644351464435,
+          "closed_set_accuracy_on_accepted_known": 0.9729323387145996,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9718367346938775
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.9539355742296919
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.8711476389719067,
+          "unknown_accepted_at_95pct_known": 0.5857740585774058,
+          "closed_set_accuracy_on_accepted_known": 0.9774436354637146,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9984489795918368
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.8493067226890756
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "seed": 1,
+      "unknown": [
+        "Yuneec_typhoon_h",
+        "DJI_inspire_2"
+      ],
+      "n_known_windows": 700,
+      "n_unknown_windows": 239,
+      "closed_set_accuracy_known": 0.9757142663002014,
+      "scores": {
+        "msp": {
+          "auroc": 0.9190794979079497,
+          "unknown_accepted_at_95pct_known": 0.7615062761506276,
+          "closed_set_accuracy_on_accepted_known": 0.995488703250885,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9230204081632654
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.9184033613445378
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.9568320382546324,
+          "unknown_accepted_at_95pct_known": 0.2510460251046025,
+          "closed_set_accuracy_on_accepted_known": 0.9804511070251465,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9077142857142857
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.9652591036414566
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.8669695158398087,
+          "unknown_accepted_at_95pct_known": 0.602510460251046,
+          "closed_set_accuracy_on_accepted_known": 0.9789473414421082,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9944489795918368
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.8450980392156863
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "seed": 2,
+      "unknown": [
+        "Yuneec_typhoon_h",
+        "DJI_inspire_2"
+      ],
+      "n_known_windows": 700,
+      "n_unknown_windows": 239,
+      "closed_set_accuracy_known": 0.9714285731315613,
+      "scores": {
+        "msp": {
+          "auroc": 0.9232456664674238,
+          "unknown_accepted_at_95pct_known": 0.7447698744769874,
+          "closed_set_accuracy_on_accepted_known": 0.9894737005233765,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9286530612244898
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.9223179271708684
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.9699521817095039,
+          "unknown_accepted_at_95pct_known": 0.18828451882845187,
+          "closed_set_accuracy_on_accepted_known": 0.9744361042976379,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9798775510204082
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.9682492997198879
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.8831858936043037,
+          "unknown_accepted_at_95pct_known": 0.5690376569037657,
+          "closed_set_accuracy_on_accepted_known": 0.9759398698806763,
+          "per_unknown": {
+            "Yuneec_typhoon_h": {
+              "windows": 35,
+              "auroc": 0.9976734693877551
+            },
+            "DJI_inspire_2": {
+              "windows": 204,
+              "auroc": 0.8635434173669467
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "seed": 0,
+      "unknown": [
+        "Parrot_mambo",
+        "DJI_matrice_100"
+      ],
+      "n_known_windows": 856,
+      "n_unknown_windows": 83,
+      "closed_set_accuracy_known": 0.9357476830482483,
+      "scores": {
+        "msp": {
+          "auroc": 0.8940856885485868,
+          "unknown_accepted_at_95pct_known": 0.9397590361445783,
+          "closed_set_accuracy_on_accepted_known": 0.9692496657371521,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9208303378864127
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.8891188251001335
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.9758613894831664,
+          "unknown_accepted_at_95pct_known": 0.1686746987951807,
+          "closed_set_accuracy_on_accepted_known": 0.9569495916366577,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.936646297627606
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9831441922563418
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9894859813084113,
+          "unknown_accepted_at_95pct_known": 0.060240963855421686,
+          "closed_set_accuracy_on_accepted_known": 0.9520295262336731,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9760963335729691
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9919726301735647
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "seed": 1,
+      "unknown": [
+        "Parrot_mambo",
+        "DJI_matrice_100"
+      ],
+      "n_known_windows": 856,
+      "n_unknown_windows": 83,
+      "closed_set_accuracy_known": 0.9439252614974976,
+      "scores": {
+        "msp": {
+          "auroc": 0.9093570543857674,
+          "unknown_accepted_at_95pct_known": 0.9518072289156626,
+          "closed_set_accuracy_on_accepted_known": 0.9655596613883972,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9014198418404026
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9108311081441922
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.9790986375408175,
+          "unknown_accepted_at_95pct_known": 0.18072289156626506,
+          "closed_set_accuracy_on_accepted_known": 0.9692496657371521,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9279295470884256
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9886014686248331
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9927091543745074,
+          "unknown_accepted_at_95pct_known": 0.03614457831325301,
+          "closed_set_accuracy_on_accepted_known": 0.9606395959854126,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9905643421998562
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.993107476635514
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "seed": 2,
+      "unknown": [
+        "Parrot_mambo",
+        "DJI_matrice_100"
+      ],
+      "n_known_windows": 856,
+      "n_unknown_windows": 83,
+      "closed_set_accuracy_known": 0.9450934529304504,
+      "scores": {
+        "msp": {
+          "auroc": 0.9469232068460759,
+          "unknown_accepted_at_95pct_known": 0.3855421686746988,
+          "closed_set_accuracy_on_accepted_known": 0.9680196642875671,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9131020848310568
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9532042723631509
+            }
+          }
+        },
+        "energy": {
+          "auroc": 0.983138160117104,
+          "unknown_accepted_at_95pct_known": 0.1566265060240964,
+          "closed_set_accuracy_on_accepted_known": 0.9704797267913818,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9490474478792236
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9894692923898532
+            }
+          }
+        },
+        "maha": {
+          "auroc": 0.9933003040198176,
+          "unknown_accepted_at_95pct_known": 0.060240963855421686,
+          "closed_set_accuracy_on_accepted_known": 0.9606395959854126,
+          "per_unknown": {
+            "Parrot_mambo": {
+              "windows": 13,
+              "auroc": 0.9794212796549245
+            },
+            "DJI_matrice_100": {
+              "windows": 70,
+              "auroc": 0.9958778371161549
+            }
+          }
+        }
+      }
+    }
+  ]
+}
