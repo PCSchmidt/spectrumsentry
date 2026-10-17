@@ -14,6 +14,8 @@ Receive-only classification of drone radio links from raw IQ samples, with an ho
 
 [CardRF](https://zenodo.org/records/4264467) (Tampere University, CC BY 4.0): 10 consumer drones, raw IQ, recorded in an anechoic chamber. About 8.6 GB. Download with `python scripts/download_cardrf.py` (resumable, checksum-verified). The data is not committed.
 
+A second dataset, [DroneRF](https://data.mendeley.com/datasets/f4c2b4n755/1) (Al-Sa'd, Allahham, Mohamed, Al-Ali, Khattab and Erbad, Qatar University, 2019; Mendeley Data V1, DOI 10.17632/f4c2b4n755.1; CC BY 4.0), is planned as an independent test: a different team, place and receivers, with three drones (AR, Bebop, Phantom) plus background RF. It is downloaded by hand from the Mendeley page and its SHA-256 is checked before use. It is not committed either.
+
 ## Run
 
 ```sh
