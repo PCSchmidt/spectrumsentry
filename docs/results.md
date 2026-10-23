@@ -38,7 +38,7 @@ Overall, 61.7% of test windows pass the gate (4,026 of 6,527). On those, the ung
 What this says:
 
 - **The 77% headline mostly measures how often a window contains a burst.** When a burst is present, classification is 93% or better for 7 of the 10 drones, and 100% for the sparse hoppers that are caught.
-- **The real weaknesses are two.** (1) Detection coverage for sparse hoppers (Parrot Disco and Mambo, Yuneec Typhoon H): a fixed 0.55 ms window catches a burst only 10-14% of the time, so a deployed system would have to accumulate or use longer windows. (2) Confusion between DJI siblings: Inspire 2, Phantom 4 Pro Plus and Matrice 210 stay at 83-94% even on busy windows. I have not yet looked at a confusion matrix, so I do not know which pairs are confused or why.
+- **The real weaknesses are two.** (1) Detection coverage for sparse hoppers (Parrot Disco and Mambo, Yuneec Typhoon H): a fixed 0.55 ms window catches a burst only 10-14% of the time, so a deployed system would have to accumulate or use longer windows. (2) Confusion between DJI siblings: Inspire 2, Phantom 4 Pro Plus and Matrice 210 stay at 83-94% even on busy windows. Section 6 below has the confusion matrix and what longer observations do.
 - **Gated training helps a little and consistently** (about 3 points on detected windows, same sign in all three seeds), but it is one dataset and one run per seed.
 - **The noise floor used by the gate comes from the whole recording.** A live receiver would estimate it from past samples only. Not tested.
 
@@ -132,6 +132,58 @@ What this says:
 - **Unknown drones in the sparse-hopper group are hard to evaluate**: Parrot Disco and Mambo have 13 detected test windows each, so their per-drone numbers (0.96 and 0.98) rest on very little data.
 - **Limits.** Single chamber, single receiver; two unknowns per fold; the Mahalanobis fit uses the training windows of the known drones, the gate's noise floor comes from the whole recording, and no shifted conditions were tested here (the shift sweeps show how much a model changes under noise or a narrower receiver, so open-set scores under those conditions are likely worse; not measured).
 
+## 6. Confusion matrix, longer observations, DroneRF bandwidth and bit depth
+
+`scripts/run_burst.py` (CardRF, the gated model, 3 seeds, same time-block split as section 2; `results/burst.json`) and `scripts/run_dronerf_sweeps.py` (`results/dronerf_sweeps.json`).
+
+**Which drones are confused.** Detected test windows only, seeds pooled (each row is a true drone, percentages of its windows):
+
+| True drone | Correct | Largest confusions |
+| --- | --- | --- |
+| Inspire 2 | 86.5% | Phantom 4 Pro Plus 5.5%, Matrice 100 5.1%, Matrice 210 1.6% |
+| Phantom 4 Pro Plus | 86.9% | Matrice 210 5.8%, Inspire 2 3.2%, Matrice 100 2.9% |
+| Matrice 210 | 94.5% | Inspire 2 2.7%, Phantom 4 Pro Plus 2.7% |
+| Matrice 100 | 97.4% | Mavic Pro 1.5%, Inspire 2 1.0% |
+| Mavic Pro | 98.5% | Matrice 100 1.3% |
+| Mavic Mini, Phantom 4, Parrot Disco, Parrot Mambo, Yuneec Typhoon H | 100% | none |
+
+So the 83-94% DJI figures of section 2 are mostly a confusion *among Inspire 2, Phantom 4 Pro Plus and Matrice 210* of about 3 to 6% in each direction, with some windows going to Matrice 100 (3 to 5%); Mavic Pro and Matrice 100 are confused only 1 to 1.5% of the time, and Mavic Mini, Phantom 4 and the non-DJI drones are never mistaken for another drone. Why the four are alike I did not investigate (same vendor protocol and similar hardware is the obvious guess, not tested).
+
+**Longer observations.** Consecutive aligned test windows of one recording are grouped into segments of n windows (0.55 ms each); a segment is detected if any window passes the gate, and classified by summing the log-probabilities of its passing windows. Detected share / accuracy among detected / detected and correct, as a share of all segments:
+
+| Drone | 1 window (0.55 ms) | 5 windows (2.8 ms) | 20 windows (11 ms) | 100 windows (55 ms) |
+| --- | --- | --- | --- | --- |
+| Inspire 2 | 88% / 86% / 76% | 98% / 88% / 87% | 100% / 100% / 100% | 100% / 100% / 100% |
+| Phantom 4 Pro Plus | 88% / 87% / 76% | 99% / 89% / 88% | 100% / 100% / 100% | 100% / 100% / 100% |
+| Matrice 210 | 87% / 94% / 83% | 99% / 96% / 96% | 100% / 100% / 100% | 100% / 100% / 100% |
+| Mavic Mini | 54% / 100% / 54% | 66% / 100% / 66% | 100% / 100% / 100% | 100% / 100% / 100% |
+| Parrot Disco | 13% / 100% / 13% | 26% / 100% / 26% | 61% / 100% / 61% | 100% / 100% / 100% |
+| Parrot Mambo | 10% / 100% / 10% | 26% / 100% / 26% | 61% / 100% / 61% | 100% / 100% / 100% |
+| Yuneec Typhoon H | 14% / 100% / 14% | 35% / 100% / 35% | 75% / 100% / 75% | 89% / 100% / 89% |
+
+(Matrice 100, Mavic Pro and Phantom 4, omitted for space, are at 100% by 20 windows.) Accumulating windows fixes both problems: the DJI confusions disappear within about 11 ms of observation, and the sparse hoppers are caught 61 to 75% of the time within 11 ms and 89 to 100% within 55 ms, always classified correctly when caught. **These longer-segment numbers are thin.** Each segment is a stretch of a single recording in the same test block; a 100-window segment gives only 3 to 9 segments per drone per seed (9 to 27 over three seeds, repeating the same segments), and no 400-window segments exist because the test blocks are too short. Because segments of one recording share the same session and conditions, "100%" here mostly says that errors on single windows are independent enough to vote away within a recording; it does not show that a segment from a *different* recording or day would be classified so cleanly.
+
+**DroneRF bandwidth and bit depth** (real-valued recordings, drone task, ordered split, macro accuracy over 4 classes, chance 25%, mean and standard deviation over 3 seeds). "Augmented" is trained with random noise, band-limiting and quantisation.
+
+| Test condition | Trained clean | Augmented |
+| --- | --- | --- |
+| clean | 75.7 +- 0.6 | 73.7 +- 2.0 |
+| keep the lowest 50% of the spectrum | 32.9 +- 5.3 | 48.9 +- 8.6 |
+| lowest 25% | 25.0 +- 0.0 | 29.6 +- 6.5 |
+| lowest 12.5% | 25.0 +- 0.0 | 29.4 +- 4.8 |
+| lowest 6.25% | 25.0 +- 0.0 | 31.5 +- 6.1 |
+| 12 bits | 75.7 +- 0.6 | 73.7 +- 2.0 |
+| 8 bits | 75.3 +- 0.9 | 72.4 +- 2.4 |
+| 6 bits | 73.5 +- 1.1 | 71.7 +- 2.5 |
+| 4 bits | 71.0 +- 0.3 | 70.1 +- 2.8 |
+| 3 bits | 68.5 +- 0.5 | 67.6 +- 2.6 |
+| 2 bits | 35.7 +- 0.9 | 34.7 +- 0.7 |
+
+- **A narrower receiver is far worse than coarser samples.** Dropping the upper half of the spectrum takes the clean model from 76% to 33%, and below that it predicts a single class (exactly chance). Training with band-limiting recovers part of it at half bandwidth (49%) and almost nothing below. This matches the CardRF finding that augmentation recovers noise and channel effects but not receiver bandwidth.
+- **Bit depth hardly matters until 2 bits.** Accuracy falls about 2 points per halving down to 4 bits, 7 points at 3 bits, and collapses at 2 bits. A cheap low-resolution ADC is not the risk; bandwidth is.
+- **Only a low-pass was tested** (keep the lowest fraction of the real FFT). Where in the band the drones' energy sits, and whether a band-pass or high-pass cut would be as damaging, I did not test; the collapse at half bandwidth suggests the discriminating content is in the part removed.
+- Augmentation here slightly lowers clean accuracy (73.7 against 75.7, within about one standard deviation of the augmented runs).
+
 ## Not done yet
 
-Longer windows or burst-level classification for the sparse hoppers; a confusion matrix; an easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection under simulated shift or on DroneRF; the other impairments on DroneRF (it is real-valued, so frequency offset and I/Q imbalance do not apply, but bandwidth and bit depth do); a cross-dataset test (the class sets do not overlap); any real-time or on-device measurement.
+An easy-to-hard augmentation schedule and tests of why the clean model is so sensitive to noise; open-set detection under simulated shift or on DroneRF; segment-level decisions across *different* recordings (the data does not allow it: one recording per drone and block); band-pass and high-pass cuts on DroneRF; a cross-dataset test (the class sets do not overlap); why the four DJI models are alike; any real-time or on-device measurement.

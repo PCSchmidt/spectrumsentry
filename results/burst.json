@@ -1,0 +1,465 @@
+{
+  "classes": [
+    "DJI_inspire_2",
+    "DJI_matrice_100",
+    "DJI_matrice_210",
+    "DJI_mavic_mini",
+    "DJI_mavic_pro",
+    "DJI_phantom_4",
+    "DJI_phantom_4_pro_plus",
+    "Parrot_disco",
+    "Parrot_mambo",
+    "Yuneec_typhoon_h"
+  ],
+  "confusion_counts": [
+    [
+      2221,
+      131,
+      42,
+      0,
+      31,
+      0,
+      142,
+      0,
+      1,
+      0
+    ],
+    [
+      10,
+      950,
+      0,
+      0,
+      15,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      69,
+      0,
+      2417,
+      0,
+      0,
+      0,
+      68,
+      0,
+      5,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      594,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      14,
+      0,
+      0,
+      1025,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      969,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      83,
+      75,
+      148,
+      0,
+      29,
+      0,
+      2231,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      141,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      216,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      447
+    ]
+  ],
+  "segment_windows": [
+    1,
+    5,
+    20,
+    100,
+    400
+  ],
+  "per_drone": {
+    "DJI_inspire_2": {
+      "1": {
+        "segments": 2928,
+        "detected": 2568,
+        "correct": 2221
+      },
+      "5": {
+        "segments": 585,
+        "detected": 576,
+        "correct": 509
+      },
+      "20": {
+        "segments": 144,
+        "detected": 144,
+        "correct": 144
+      },
+      "100": {
+        "segments": 27,
+        "detected": 27,
+        "correct": 27
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "DJI_matrice_100": {
+      "1": {
+        "segments": 1098,
+        "detected": 975,
+        "correct": 950
+      },
+      "5": {
+        "segments": 219,
+        "detected": 219,
+        "correct": 219
+      },
+      "20": {
+        "segments": 54,
+        "detected": 54,
+        "correct": 54
+      },
+      "100": {
+        "segments": 9,
+        "detected": 9,
+        "correct": 9
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "DJI_matrice_210": {
+      "1": {
+        "segments": 2928,
+        "detected": 2559,
+        "correct": 2417
+      },
+      "5": {
+        "segments": 585,
+        "detected": 582,
+        "correct": 559
+      },
+      "20": {
+        "segments": 144,
+        "detected": 144,
+        "correct": 144
+      },
+      "100": {
+        "segments": 27,
+        "detected": 27,
+        "correct": 27
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "DJI_mavic_mini": {
+      "1": {
+        "segments": 1098,
+        "detected": 594,
+        "correct": 594
+      },
+      "5": {
+        "segments": 219,
+        "detected": 144,
+        "correct": 144
+      },
+      "20": {
+        "segments": 54,
+        "detected": 54,
+        "correct": 54
+      },
+      "100": {
+        "segments": 9,
+        "detected": 9,
+        "correct": 9
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "DJI_mavic_pro": {
+      "1": {
+        "segments": 1098,
+        "detected": 1041,
+        "correct": 1025
+      },
+      "5": {
+        "segments": 219,
+        "detected": 219,
+        "correct": 219
+      },
+      "20": {
+        "segments": 54,
+        "detected": 54,
+        "correct": 54
+      },
+      "100": {
+        "segments": 9,
+        "detected": 9,
+        "correct": 9
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "DJI_phantom_4": {
+      "1": {
+        "segments": 1098,
+        "detected": 969,
+        "correct": 969
+      },
+      "5": {
+        "segments": 219,
+        "detected": 219,
+        "correct": 219
+      },
+      "20": {
+        "segments": 54,
+        "detected": 54,
+        "correct": 54
+      },
+      "100": {
+        "segments": 9,
+        "detected": 9,
+        "correct": 9
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "DJI_phantom_4_pro_plus": {
+      "1": {
+        "segments": 2928,
+        "detected": 2568,
+        "correct": 2231
+      },
+      "5": {
+        "segments": 585,
+        "detected": 579,
+        "correct": 513
+      },
+      "20": {
+        "segments": 144,
+        "detected": 144,
+        "correct": 144
+      },
+      "100": {
+        "segments": 27,
+        "detected": 27,
+        "correct": 27
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "Parrot_disco": {
+      "1": {
+        "segments": 1098,
+        "detected": 141,
+        "correct": 141
+      },
+      "5": {
+        "segments": 219,
+        "detected": 57,
+        "correct": 57
+      },
+      "20": {
+        "segments": 54,
+        "detected": 33,
+        "correct": 33
+      },
+      "100": {
+        "segments": 9,
+        "detected": 9,
+        "correct": 9
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "Parrot_mambo": {
+      "1": {
+        "segments": 2196,
+        "detected": 216,
+        "correct": 216
+      },
+      "5": {
+        "segments": 438,
+        "detected": 114,
+        "correct": 114
+      },
+      "20": {
+        "segments": 108,
+        "detected": 66,
+        "correct": 66
+      },
+      "100": {
+        "segments": 18,
+        "detected": 18,
+        "correct": 18
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    },
+    "Yuneec_typhoon_h": {
+      "1": {
+        "segments": 3111,
+        "detected": 447,
+        "correct": 447
+      },
+      "5": {
+        "segments": 621,
+        "detected": 216,
+        "correct": 216
+      },
+      "20": {
+        "segments": 153,
+        "detected": 114,
+        "correct": 114
+      },
+      "100": {
+        "segments": 27,
+        "detected": 24,
+        "correct": 24
+      },
+      "400": {
+        "segments": 0,
+        "detected": 0,
+        "correct": 0
+      }
+    }
+  },
+  "top_confusions": [
+    {
+      "true": "DJI_phantom_4_pro_plus",
+      "predicted": "DJI_matrice_210",
+      "share": 0.05763239875389408,
+      "n": 2568
+    },
+    {
+      "true": "DJI_inspire_2",
+      "predicted": "DJI_phantom_4_pro_plus",
+      "share": 0.05529595015576324,
+      "n": 2568
+    },
+    {
+      "true": "DJI_inspire_2",
+      "predicted": "DJI_matrice_100",
+      "share": 0.05101246105919003,
+      "n": 2568
+    },
+    {
+      "true": "DJI_phantom_4_pro_plus",
+      "predicted": "DJI_inspire_2",
+      "share": 0.0323208722741433,
+      "n": 2568
+    },
+    {
+      "true": "DJI_phantom_4_pro_plus",
+      "predicted": "DJI_matrice_100",
+      "share": 0.029205607476635514,
+      "n": 2568
+    },
+    {
+      "true": "DJI_matrice_210",
+      "predicted": "DJI_inspire_2",
+      "share": 0.026963657678780773,
+      "n": 2559
+    },
+    {
+      "true": "DJI_matrice_210",
+      "predicted": "DJI_phantom_4_pro_plus",
+      "share": 0.02657288003126221,
+      "n": 2559
+    },
+    {
+      "true": "DJI_inspire_2",
+      "predicted": "DJI_matrice_210",
+      "share": 0.016355140186915886,
+      "n": 2568
+    }
+  ]
+}
